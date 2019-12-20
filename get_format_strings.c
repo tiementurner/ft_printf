@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 16:35:52 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/20 14:06:58 by tblanker      ########   odam.nl         */
+/*   Updated: 2019/12/20 15:57:58 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,16 @@ char	*get_d_string(int precision, va_list args)
 {
 	char	*number;
 	char	*string;
-	int		i;
 	int		nbr;
-	int		j;
 
-	j = 0;
 	nbr = va_arg(args, int);
-	printf("\n%d\n", nbr);
 	number = ft_itoa(nbr);
-	printf("\n%s\n", number);
 	if (precision > ft_strlen(number))
 	{
 		string = (char *)malloc(sizeof(char) * precision);
 		string[precision] = '\0';
-		ft_bzero(string, 20);
-		i = precision - ft_strlen(number);
-		while (string[i])
-		{
-			string[i] = number[j];
-			i++;
-			j++;
-		}
-		return (string);
+		ft_bzero(string, precision);
+		return (string_into_string_right(string, number));
 	}
 	else
 		return (number);
@@ -82,4 +70,26 @@ char	*get_s_string(va_list args, int precision)
 	else
 		string = ft_strdup(temp);
 	return (string);
+}
+
+char	*get_hex_string(va_list args, int precision, char type)
+{
+	char	*string;
+	long	temp;
+	char	*hex_num;
+
+	temp = va_arg(args, long);
+	if (type == 'x')
+		hex_num = dec_to_hex_lowercase(temp);
+	if (type == 'X')
+		hex_num = dec_to_hex_uppercase(temp);
+	if (precision > ft_strlen(hex_num))
+	{
+		string = (char *)malloc(sizeof(char) * precision);
+		string[precision] = '\0';
+		ft_bzero(string, precision);
+		return (string_into_string_right(string, hex_num));
+	}
+	else
+		return (hex_num);
 }

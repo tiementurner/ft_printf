@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/19 16:25:03 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/19 16:44:30 by tblanker      ########   odam.nl         */
+/*   Updated: 2019/12/20 14:22:59 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			*get_u_string(int precision, va_list args)
 	{
 		string = (char *)malloc(sizeof(char) * precision);
 		string[precision] = '\0';
-		ft_bzero(string, 20);
+		ft_bzero(string, precision);
 		i = precision - ft_strlen(number);
 		while (string[i])
 		{

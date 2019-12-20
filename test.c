@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 16:20:48 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/20 14:08:33 by tblanker      ########   odam.nl         */
+/*   Updated: 2019/12/20 16:36:47 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	main(void)
 {
-	//int num = -2;
-	//unsigned int  num2 = num;
-
-	ft_printf("%-*.*x\n\n", 10, 5, 23442);
-	printf("%-*.*x-\n\n", 10, 5, 23442);
+	ft_printf("%-*d\n\n", 20, 3223442);
+	printf("%-*d\n\n", 20, 3223442);
 }

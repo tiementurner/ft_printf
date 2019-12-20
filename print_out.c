@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 15:10:43 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/20 14:07:53 by tblanker      ########   odam.nl         */
+/*   Updated: 2019/12/20 16:32:33 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,30 @@ void	print_out_struct(t_percent *conv, va_list args)
 	char *output;
 	char *format;
 
-	if (conv->width > 0)
-		output = (char *)malloc(sizeof(char) * (conv->width + 1));
 	format = get_format_string(conv, args);
-	printf("\n format: %s\n", format);
+	if (conv->width > ft_strlen(format))
+	{
+		output = (char *)malloc(sizeof(char) * (conv->width) + 1);
+		ft_bspace(output, conv->width);
+		output[conv->width] = '\0';
+	}
+	else
+	{
+		output = (char *)malloc(sizeof(char) * (ft_strlen(format)) + 1);
+		ft_bspace(output, ft_strlen(format));
+		output[ft_strlen(format)] = '\0';
+	}
+	if (conv->zero && !(conv->left) && conv->precision < 0)
+		ft_bzero(output, ft_strlen(output));
+	if (conv->left)
+		output = string_into_string_left(output, format);
+	else if (!(conv->left))
+		output = string_into_string_right(output, format);
+	ft_putstr(output);
 }
 
 char	*get_format_string(t_percent *conv, va_list args)
 {
-	printf("\n%c\n", conv->type);
 	if (conv->type == 'c')
 		return (get_c_string(args));
 	if (conv->type == 'd' || conv->type == 'i')
@@ -36,7 +51,9 @@ char	*get_format_string(t_percent *conv, va_list args)
 		return (get_s_string(args, conv->precision));
 	if (conv->type == 'u')
 		return (get_u_string(conv->precision, args));
-	if (conv->type == 'x')
-		return (dec_to_hex_lowercase(va_arg(args, long)));
+	if (conv->type == 'x' || conv->type == 'X')
+		return (get_hex_string(args, conv->precision, conv->type));
+	if (conv->type == '%')
+		return (ft_strdup("%"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/05 14:42:48 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/18 13:01:52 by tblanker      ########   odam.nl         */
+/*   Updated: 2019/12/20 16:29:51 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,33 @@ char			*ft_strjoin(char const *s1, char const *s2)
 	if (p)
 		p = ft_merge(p, s1, s2);
 	return (p);
+}
+
+char	*string_into_string_right(char *s1, char *s2)
+{
+	int i;
+	int j;
+
+	j = 0;
+	i = ft_strlen(s1) - ft_strlen(s2);
+	while (s1[i])
+	{
+		s1[i] = s2[j];
+		i++;
+		j++;
+	}
+	return (s1);
+}
+
+char	*string_into_string_left(char *s1, char *s2)
+{
+	int i;
+
+	i = 0;
+	while (i < ft_strlen(s2))
+	{
+		s1[i] = s2[i];
+		i++;
+	}
+	return (s1);
 }

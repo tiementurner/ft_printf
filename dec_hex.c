@@ -6,13 +6,13 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/18 12:39:03 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/18 12:58:20 by tblanker      ########   odam.nl         */
+/*   Updated: 2019/12/20 14:54:33 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static	char	*get_hex_string(char *reversed_hex, int i)
+static	char	*reverse_hex(char *reversed_hex, int i)
 {
 	int		j;
 	char	*hex;
@@ -53,7 +53,7 @@ char			*dec_to_hex_uppercase(long temp)
 			i++;
 		}
 	}
-	return (get_hex_string(hex, i));
+	return (reverse_hex(hex, i));
 }
 
 char			*dec_to_hex_lowercase(long temp)
@@ -78,5 +78,5 @@ char			*dec_to_hex_lowercase(long temp)
 			i++;
 		}
 	}
-	return (get_hex_string(hex, i));
+	return (reverse_hex(hex, i));
 }
