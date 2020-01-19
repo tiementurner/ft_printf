@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/18 12:39:03 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/20 14:54:33 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/15 14:13:08 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static	char	*reverse_hex(char *reversed_hex, int i)
 	end = i;
 	j = 0;
 	hex = (char *)malloc(sizeof(char) * (i + 1));
+	if (!hex)
+		return (NULL);
 	while (j < end)
 	{
 		i--;
@@ -38,6 +40,8 @@ char			*dec_to_hex_uppercase(long temp)
 	int		i;
 
 	i = 0;
+	if (temp == 0)
+		return (ft_strdup("0"));
 	while (temp != 0)
 	{
 		remainder = temp % 16;
@@ -56,13 +60,15 @@ char			*dec_to_hex_uppercase(long temp)
 	return (reverse_hex(hex, i));
 }
 
-char			*dec_to_hex_lowercase(long temp)
+char			*dec_to_hex_lowercase(long temp, char type)
 {
 	long	remainder;
 	char	hex[100];
 	int		i;
 
 	i = 0;
+	if (temp == 0 && type == 'x')
+		return (ft_strdup("0"));
 	while (temp != 0)
 	{
 		remainder = temp % 16;

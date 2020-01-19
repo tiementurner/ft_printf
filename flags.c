@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 16:51:41 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/19 16:58:08 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/17 15:29:18 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 int	set_flags(char *format, t_percent *conv, int i)
 {
+	if (format[i] == '%' || format[i] == '\0')
+		return (i);
 	if (format[i] == '-' || (format[i + 1]) == '-')
 	{
 		conv->left = 1;
 		i++;
 	}
-	if (format[i] == '0' || format[i + 1] == '0')
+	if ((format[i] == '0' || format[i + 1] == '0' || format[i - 1] == '0') &&
+	format[i] != '.' && (!(ft_isdigit(format[i])) || format[i] == '0'))
 	{
 		conv->zero = 1;
 		i++;
@@ -32,6 +35,7 @@ int	set_width(char *format, t_percent *conv, int i, va_list args)
 	char	size[100];
 	int		j;
 
+	ft_bspace(size, 100);
 	j = 0;
 	while (ft_isdigit(format[i]))
 	{
@@ -44,9 +48,13 @@ int	set_width(char *format, t_percent *conv, int i, va_list args)
 	if (format[i] == '*')
 	{
 		conv->width = va_arg(args, int);
+		if (conv->width < 0)
+		{
+			conv->width *= -1;
+			conv->left = 1;
+		}
 		i++;
 	}
-	ft_bzero(size, 100);
 	return (i);
 }
 
@@ -55,6 +63,7 @@ int	set_precision(char *format, t_percent *conv, int i, va_list args)
 	char	size[100];
 	int		j;
 
+	ft_bspace(size, 100);
 	if (format[i] == '.')
 	{
 		i++;
@@ -67,11 +76,10 @@ int	set_precision(char *format, t_percent *conv, int i, va_list args)
 		}
 		if (j > 0)
 			conv->precision = ft_atoi(size);
+		if (j == 0)
+			conv->precision = -1;
 		if (format[i] == '*')
-		{
-			conv->precision = va_arg(args, int);
-			i++;
-		}
+			i = precision_neg_star(i, conv, args);
 	}
 	return (i);
 }

@@ -6,14 +6,15 @@
 #    By: tblanker <tblanker@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/27 16:05:25 by tblanker       #+#    #+#                 #
-#    Updated: 2019/12/19 16:50:27 by tblanker      ########   odam.nl          #
+#    Updated: 2020/01/14 09:45:24 by tblanker      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
 
 SRC		=	ft_printf.c write_functions.c helper.c flags.c print_out.c \
-			get_format_strings.c dec_hex.c get_unsigned_string.c
+			get_format_strings.c dec_hex.c get_unsigned_string.c \
+			twenty_five_line_fixers.c
 
 LIBDIR	=	./libft/
 

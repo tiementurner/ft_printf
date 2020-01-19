@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/19 16:25:03 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/20 14:22:59 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/15 14:09:48 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,39 @@ static char		*ft_uitoa(unsigned int nbr)
 	return (string);
 }
 
+static char		*precision_u_string(int precision, char *number)
+{
+	char	*string;
+	int		i;
+	int		j;
+
+	j = 0;
+	string = (char *)malloc(sizeof(char) * precision);
+	if (!string)
+		return (NULL);
+	string[precision] = '\0';
+	ft_bzero(string, precision);
+	i = precision - ft_strlen(number);
+	while (string[i])
+	{
+		string[i] = number[j];
+		i++;
+		j++;
+	}
+	return (string);
+}
+
 char			*get_u_string(int precision, va_list args)
 {
 	char			*number;
-	char			*string;
-	int				i;
 	unsigned int	nbr;
-	int				j;
 
-	j = 0;
 	nbr = va_arg(args, int);
 	number = ft_uitoa(nbr);
+	if (nbr == 0 && (precision == 0 || precision == -1))
+		number = ft_strdup("");
 	if (precision > ft_strlen(number))
-	{
-		string = (char *)malloc(sizeof(char) * precision);
-		string[precision] = '\0';
-		ft_bzero(string, precision);
-		i = precision - ft_strlen(number);
-		while (string[i])
-		{
-			string[i] = number[j];
-			i++;
-			j++;
-		}
-		return (string);
-	}
+		return (precision_u_string(precision, number));
 	else
 		return (number);
 }

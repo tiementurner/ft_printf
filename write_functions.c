@@ -1,49 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   write.c                                            :+:    :+:            */
+/*   write_functions.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/01 12:35:53 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/13 14:06:16 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/15 14:49:37 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_putchar(char c)
+void	ft_putchar(char c, t_percent *conv)
 {
-	write(1, &c, 1);
+	write_function(c, conv);
 }
 
-void	ft_putstr(char *s)
+void	write_function(char c, t_percent *conv)
+{
+	int error;
+
+	error = write(1, &c, 1);
+	if (conv->count == -1 || error == -1)
+		conv->count = -1;
+	return ;
+}
+
+void	ft_putstr(char *s, t_percent *conv)
 {
 	int i;
+	int length;
 
 	if (!s)
 		return ;
 	i = 0;
-	while (i < (int)strlen(s))
+	length = ft_strlen(s);
+	while (i < length)
 	{
-		write(1, &s[i], 1);
+		ft_putchar(s[i], conv);
 		i++;
 	}
-}
-
-void	ft_putnbr(int n)
-{
-	unsigned int	result;
-
-	result = 0;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		result = (unsigned int)(n * -1);
-	}
-	else
-		result = (unsigned int)n;
-	if (result >= 10)
-		ft_putnbr(result / 10);
-	ft_putchar((char)(result % 10 + '0'));
 }
