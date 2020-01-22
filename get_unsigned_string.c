@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/19 16:25:03 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/15 14:09:48 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/22 12:20:20 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static char		*precision_u_string(int precision, char *number)
 		i++;
 		j++;
 	}
+	free(number);
 	return (string);
 }
 

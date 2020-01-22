@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/27 15:45:47 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/15 14:59:28 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/22 12:28:55 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,19 @@ int				ft_atoi(const char *str);
 int				ft_isdigit(int c);
 char			*ft_itoa(int nbr);
 char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_substr(char *s, unsigned int start, size_t len);
 
 char			*get_format_string(t_percent *conv, va_list args);
 char			*string_into_string_right(char *s1, char *s2);
 char			*string_into_string_left(char *s1, char *s2);
-char			*dec_to_hex_lowercase(long temp, char type);
+char			*dec_to_hex_lowercase(unsigned long temp, char type);
 char			*dec_to_hex_uppercase(long temp);
 char			*get_c_string(t_percent *conv, va_list args);
 char			*get_d_string(int precision, va_list args);
 char			*get_p_string(va_list args, int precision, char type);
 char			*get_s_string(va_list args, int precision, int width);
+char			*get_s_string_fix(int precision, int width,
+				char *temp, char *result);
 char			*get_u_string(int precision, va_list args);
 char			*get_hex_string(va_list args, int precision, char type);
 char			*precision_d_string(int precision, int nbr, int is_neg);

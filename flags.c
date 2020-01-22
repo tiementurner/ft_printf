@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 16:51:41 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/17 15:29:18 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/20 10:42:25 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	set_flags(char *format, t_percent *conv, int i)
 		conv->zero = 1;
 		i++;
 	}
+	while (format[i] == '-')
+		i++;
 	return (i);
 }
 

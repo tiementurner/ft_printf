@@ -6,7 +6,7 @@
 #    By: tblanker <tblanker@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/27 16:05:25 by tblanker       #+#    #+#                 #
-#    Updated: 2020/01/14 09:45:24 by tblanker      ########   odam.nl          #
+#    Updated: 2020/01/22 09:25:14 by tblanker      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ clean:
 	rm -f $(OFILES) $(LIBOBJ:%=$(LIBDIR)%)
 
 exec: fclean $(NAME)
-	gcc $(FLAGS) -L. -lftprintf test.c
+	gcc -L. -lftprintf test.c
 
 fclean: clean
 	rm -f $(NAME)

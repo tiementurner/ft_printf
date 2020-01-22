@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 11:31:26 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/16 12:35:26 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/22 10:15:16 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	call_functions(char *format, t_percent *conv, int i, va_list args)
 	i = set_flags((char *)format, conv, i);
 	i = set_width((char *)format, conv, i, args);
 	i = set_precision((char *)format, conv, i, args);
+	//printf("precision:%d\n", conv->precision);
 	i = set_type((char *)format, conv, i);
 	print_out_struct(conv, args);
 	return (i);

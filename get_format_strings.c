@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 16:35:52 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/16 13:34:19 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/22 12:29:51 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,25 @@ char	*get_d_string(int precision, va_list args)
 	if (nbr == 0 && (precision == 0 || precision == -1))
 		number = ft_strdup("");
 	if (precision > ft_strlen(number))
+	{
+		free(number);
 		return (precision_d_string(precision, nbr, is_neg));
+	}
 	else
 		return (number);
 }
 
 char	*get_p_string(va_list args, int precision, char type)
 {
-	long temp;
-	char *string;
-	char zero_x[4];
-	char *result;
+	unsigned long	temp;
+	char			*string;
+	char			zero_x[4];
+	char			*result;
 
 	zero_x[0] = '0';
 	zero_x[1] = 'x';
 	zero_x[2] = '\0';
-	temp = va_arg(args, long);
+	temp = va_arg(args, unsigned long);
 	if (temp == 0 && precision == -2)
 	{
 		zero_x[2] = '0';
@@ -77,24 +80,24 @@ char	*get_p_string(va_list args, int precision, char type)
 char	*get_s_string(va_list args, int precision, int width)
 {
 	char	*temp;
-	char	*string;
 	int		i;
+	char	*result;
 
-	string = NULL;
+	result = NULL;
 	if (precision == -1 && width == 0)
 		return (0);
 	i = 0;
 	temp = va_arg(args, char *);
 	if (temp == NULL)
-		temp = ft_strdup("(null)");
-	if (precision < ft_strlen(temp) && precision != -1)
-		string = ft_substr(temp, 0, precision);
-	else if (width > 0 && precision == -1)
 	{
-		string = ft_substr(temp, 0, width);
-		ft_bspace(string, width);
+		temp = ft_strdup("(null)");
+		i = 1;
 	}
-	return (string);
+	result = ft_strdup(temp);
+	result = get_s_string_fix(precision, width, temp, result);
+	if (i == 1)
+		free(temp);
+	return (result);
 }
 
 char	*get_hex_string(va_list args, int precision, char type)
@@ -117,7 +120,9 @@ char	*get_hex_string(va_list args, int precision, char type)
 			return (NULL);
 		string[precision] = '\0';
 		ft_bzero(string, precision);
-		return (string_into_string_right(string, hex_num));
+		string = string_into_string_right(string, hex_num);
+		free(hex_num);
+		return (string);
 	}
 	else
 		return (hex_num);

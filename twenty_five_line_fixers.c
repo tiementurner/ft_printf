@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/14 09:36:16 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/16 12:31:52 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/22 12:30:14 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,20 @@ int		precision_neg_star(int i, t_percent *conv, va_list args)
 		conv->precision = -2;
 	i++;
 	return (i);
+}
+
+char	*get_s_string_fix(int precision, int width, char *temp, char *result)
+{
+	if (precision < ft_strlen(temp) && precision != -1)
+	{
+		free(result);
+		result = ft_substr(temp, 0, precision);
+	}
+	else if (width > 0 && precision == -1)
+	{
+		free(result);
+		result = ft_substr(temp, 0, width);
+		ft_bspace(result, width);
+	}
+	return (result);
 }

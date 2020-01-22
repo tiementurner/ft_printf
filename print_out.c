@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 15:10:43 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/16 13:31:01 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/22 12:04:20 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void		print_out_struct(t_percent *conv, va_list args)
 		return ;
 	output = init_output(conv, format);
 	if (!output)
+	{
+		free(format);
 		return ;
+	}
 	if (conv->zero && !(conv->left) && conv->precision < 0)
 	{
 		ft_bzero(output, ft_strlen(output));
