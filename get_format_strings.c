@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 16:35:52 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/22 12:29:51 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/23 10:59:08 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*get_d_string(int precision, va_list args)
 	number = ft_itoa(nbr);
 	if (nbr == 0 && (precision == 0 || precision == -1))
 		number = ft_strdup("");
-	if (precision > ft_strlen(number))
+	if (precision >= ft_strlen(number))
 	{
 		free(number);
 		return (precision_d_string(precision, nbr, is_neg));

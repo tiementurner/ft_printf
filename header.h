@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/27 15:45:47 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/22 12:28:55 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/24 11:04:34 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include <string.h>
-# include <stdio.h>
 # include <stdlib.h>
 
 typedef	struct	s_percent
@@ -47,7 +45,7 @@ void			ft_putstr(char *s, t_percent *conv);
 void			write_function(char c, t_percent *conv);
 
 int				is_negative(int n);
-void			ft_bspace(void *s, size_t n);
+void			ft_bspace(void *s, int n);
 char			*ft_strdup(const char *s1);
 void			ft_bzero(void *s, size_t n);
 int				ft_strlen(const char *s);

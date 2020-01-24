@@ -6,20 +6,20 @@
 #    By: tblanker <tblanker@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/27 16:05:25 by tblanker       #+#    #+#                 #
-#    Updated: 2020/01/22 09:25:14 by tblanker      ########   odam.nl          #
+#    Updated: 2020/01/24 11:03:00 by tblanker      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
 
-SRC		=	ft_printf.c write_functions.c helper.c flags.c print_out.c \
+SRC		=	ft_printf.c write_functions.c flags.c print_out.c \
 			get_format_strings.c dec_hex.c get_unsigned_string.c \
 			twenty_five_line_fixers.c
 
 LIBDIR	=	./libft/
 
 LIBSRC	=	ft_strlen.c ft_isdigit.c ft_atoi.c ft_bzero.c ft_itoa.c ft_strdup.c \
-			ft_strjoin.c ft_substr.c
+			ft_substr.c ft_strjoin.c
 
 OFILES	=	$(SRC:.c=.o)
 LIBOBJ	=	$(LIBSRC:.c=.o)

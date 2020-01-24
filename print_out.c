@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 15:10:43 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/22 12:04:20 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/24 11:07:35 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,15 @@ static char	*init_output(t_percent *conv, char *format)
 	{
 		output = (char *)malloc(sizeof(char) * (conv->width) + 1);
 		if (!output)
+		{
+			free(format);
 			return (NULL);
+		}
 		ft_bspace(output, conv->width);
 		output[conv->width] = '\0';
 	}
 	else
-	{
-		output = (char *)malloc(sizeof(char) * (ft_strlen(format)) + 1);
-		if (!output)
-			return (NULL);
-		ft_bspace(output, ft_strlen(format));
-		output[ft_strlen(format)] = '\0';
-	}
+		output = ft_strdup(format);
 	return (output);
 }
 
@@ -45,10 +42,7 @@ void		print_out_struct(t_percent *conv, va_list args)
 		return ;
 	output = init_output(conv, format);
 	if (!output)
-	{
-		free(format);
 		return ;
-	}
 	if (conv->zero && !(conv->left) && conv->precision < 0)
 	{
 		ft_bzero(output, ft_strlen(output));

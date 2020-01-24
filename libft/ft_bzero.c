@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/29 12:11:26 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/13 11:44:10 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/23 12:00:55 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	ft_bspace(void *s, size_t n)
+void	ft_bspace(void *s, int n)
 {
-	size_t			i;
-	unsigned char	*p;
+	int			i;
+	char		*p;
 
 	p = s;
 	i = 0;
