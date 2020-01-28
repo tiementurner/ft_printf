@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 11:31:26 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/23 10:07:10 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/28 20:46:47 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		reset_conv(t_percent *conv)
 	conv->left = 0;
 	conv->width = 0;
 	conv->precision = -2;
-	conv->type = ' ';
 }
 
 static int	call_functions(char *format, t_percent *conv, int i, va_list args)
@@ -52,9 +51,7 @@ int			ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 			i = call_functions((char *)format, &conv, i, args);
-		if (format[i] == '\0')
-			break ;
-		if (format[i] != '%')
+		if (format[i] != '%' && format[i] != '\0')
 		{
 			ft_putchar(format[i], &conv);
 			conv.count++;

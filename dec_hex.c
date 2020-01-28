@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/18 12:39:03 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/22 11:13:24 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/26 21:15:22 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static	char	*reverse_hex(char *reversed_hex, int i)
 	return (hex);
 }
 
-char			*dec_to_hex_uppercase(long temp)
+char			*dec_to_hex_uppercase(unsigned long temp)
 {
-	long	remainder;
-	char	hex[100];
-	int		i;
+	unsigned long	remainder;
+	char			hex[100];
+	int				i;
 
 	i = 0;
 	if (temp == 0)

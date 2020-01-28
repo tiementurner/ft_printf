@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 15:10:43 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/24 11:07:35 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/28 20:54:09 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void		print_out_struct(t_percent *conv, va_list args)
 			output[0] = '-';
 		}
 	}
-	(conv->left) ? (output = string_into_string_left(output, format)) :
-	(output = string_into_string_right(output, format));
+	output = (conv->left) ? (string_into_string_left(output, format)) :
+	(string_into_string_right(output, format));
 	ft_putstr(output, conv);
 	conv->count += ft_strlen(output);
-	free(output);
 	free(format);
+	free(output);
 }
 
 char		*get_format_string(t_percent *conv, va_list args)

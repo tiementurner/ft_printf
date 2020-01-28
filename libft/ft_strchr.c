@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdup.c                                        :+:    :+:            */
+/*   ft_strchr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/05 11:53:15 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/28 21:32:24 by tblanker      ########   odam.nl         */
+/*   Created: 2019/11/04 11:54:04 by tblanker       #+#    #+#                */
+/*   Updated: 2020/01/28 21:25:42 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_strchr(const char *s, int c)
 {
-	char	*p;
-	int		i;
-
-	i = 0;
-	p = malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (p)
+	while (*s)
 	{
-		while (i < ft_strlen(s1))
-		{
-			printf("%s\n", s1);
-			p[i] = s1[i];
-			i++;
-		}
-		p[ft_strlen(s1)] = '\0';
+		if (s[0] == (char)c)
+			return (1);
+		s++;
 	}
-	return (p);
+	if ((char)c == '\0')
+		return (0);
+	return (0);
 }

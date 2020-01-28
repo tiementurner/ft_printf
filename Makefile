@@ -6,7 +6,7 @@
 #    By: tblanker <tblanker@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/27 16:05:25 by tblanker       #+#    #+#                 #
-#    Updated: 2020/01/24 11:03:00 by tblanker      ########   odam.nl          #
+#    Updated: 2020/01/28 21:14:19 by tblanker      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ SRC		=	ft_printf.c write_functions.c flags.c print_out.c \
 
 LIBDIR	=	./libft/
 
-LIBSRC	=	ft_strlen.c ft_isdigit.c ft_atoi.c ft_bzero.c ft_itoa.c ft_strdup.c \
-			ft_substr.c ft_strjoin.c
+LIBSRC	=	ft_strlen.c ft_isdigit.c ft_atoi.c ft_bzero.c ft_itoa.c \
+			ft_strdup.c ft_substr.c ft_strjoin.c ft_strchr.c\
 
 OFILES	=	$(SRC:.c=.o)
 LIBOBJ	=	$(LIBSRC:.c=.o)
@@ -32,20 +32,15 @@ RED		= \x1b[31;01m
 
 all: $(NAME)
 
-$(NAME): $(OFILES) $(LIBOBJ:%=$(LIBDIR)%)
+$(NAME): $(SRC) $(LIBSRC:%=$(LIBDIR)%)
+	@echo "$(BLUE)Compiling $(OFILES)"
+	@gcc -c $(SRC) $(LIBSRC:%=$(LIBDIR)%) $(FLAGS)
 	@echo "$(YELLOW)\nLinking into libftprintf...\n"
-	ar rc $(NAME) $(OFILES) $(LIBOBJ:%=$(LIBDIR)%)
+	ar rc $(NAME) $(OFILES) $(LIBOBJ)
 	@echo "$(GREEN)\nLibrary Ready!\n"
 
-%.o: %.c
-	@echo "$(BLUE)Compiling $<"
-	@gcc -o $@ -c $< $(FLAGS)
-
 clean:
-	rm -f $(OFILES) $(LIBOBJ:%=$(LIBDIR)%)
-
-exec: fclean $(NAME)
-	gcc -L. -lftprintf test.c
+	rm -f $(OFILES) $(LIBOBJ)
 
 fclean: clean
 	rm -f $(NAME)

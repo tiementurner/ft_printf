@@ -5,14 +5,15 @@
 /*                                                     +:+                    */
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/14 13:22:25 by tblanker       #+#    #+#                */
-/*   Updated: 2019/12/14 13:34:06 by tblanker      ########   odam.nl         */
+/*   Created: 2020/01/28 19:47:47 by tblanker       #+#    #+#                */
+/*   Updated: 2020/01/28 21:29:33 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "header.h"
 
-int main ()
+int main()
 {
-	printf("%.1d", 42);
+	ft_printf("%.48d-\n", 1123123);
+	printf("%.48d-\n",1123123);
 }
