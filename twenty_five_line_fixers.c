@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/14 09:36:16 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/28 20:50:17 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 16:04:28 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*precision_d_string(int precision, int nbr, int is_neg, char *number)
 	}
 	if (nbr == -2147483648 && precision >= ft_strlen(number))
 		number[0] = '0';
-	string = (char *)malloc(sizeof(char) * precision + (is_neg));
+	string = (char *)malloc(sizeof(char) * precision + (is_neg) + 1);
 	if (!string)
 	{
 		free(number);
@@ -48,29 +48,13 @@ int		precision_neg_star(int i, t_percent *conv, va_list args)
 	return (i);
 }
 
-char	*get_s_string_fix(int precision, int width, char *temp, char *result)
-{
-	if (precision < ft_strlen(temp) && precision != -1)
-	{
-		free(result);
-		result = ft_substr(temp, 0, precision);
-	}
-	else if (width > 0 && precision == -1)
-	{
-		free(result);
-		result = ft_substr(temp, 0, width);
-		ft_bspace(result, width);
-	}
-	return (result);
-}
-
 char	*get_hex_string_fix(char *hex_num, int precision)
 {
 	char *string;
 
 	if (precision > ft_strlen(hex_num) && hex_num != NULL)
 	{
-		string = (char *)malloc(sizeof(char) * precision);
+		string = (char *)malloc(sizeof(char) * precision + 1);
 		if (!string)
 		{
 			free(hex_num);

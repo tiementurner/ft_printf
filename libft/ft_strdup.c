@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/05 11:53:15 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/28 21:32:24 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 12:21:17 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*ft_strdup(const char *s1)
 	{
 		while (i < ft_strlen(s1))
 		{
-			printf("%s\n", s1);
 			p[i] = s1[i];
 			i++;
 		}

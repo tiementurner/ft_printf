@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/19 16:25:03 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/22 12:20:20 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 12:22:08 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char		*precision_u_string(int precision, char *number)
 	int		j;
 
 	j = 0;
-	string = (char *)malloc(sizeof(char) * precision);
+	string = (char *)malloc(sizeof(char) * precision + 1);
 	if (!string)
 		return (NULL);
 	string[precision] = '\0';

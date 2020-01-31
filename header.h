@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/27 15:45:47 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/28 21:25:33 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 16:04:17 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-#include <stdio.h>
+# include <stdio.h>
 
 typedef	struct	s_percent
 {
@@ -66,8 +66,6 @@ char			*get_c_string(t_percent *conv, va_list args);
 char			*get_d_string(int precision, va_list args);
 char			*get_p_string(va_list args, int precision, char type);
 char			*get_s_string(va_list args, int precision, int width);
-char			*get_s_string_fix(int precision, int width,
-				char *temp, char *result);
 char			*get_u_string(int precision, va_list args);
 char			*get_hex_string(va_list args, int precision, char type);
 char			*get_hex_string_fix(char *hex_num, int precision);

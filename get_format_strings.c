@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 16:35:52 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/28 21:03:14 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 16:04:20 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,11 @@ char	*get_s_string(va_list args, int precision, int width)
 		i = 1;
 	}
 	result = ft_strdup(temp);
-	result = get_s_string_fix(precision, width, temp, result);
+	if (precision < ft_strlen(temp) && precision != -1)
+	{
+		free(result);
+		result = ft_substr(temp, 0, precision);
+	}
 	if (i == 1)
 		free(temp);
 	return (result);

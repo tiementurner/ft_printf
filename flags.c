@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/13 16:51:41 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/28 21:27:46 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/01/31 16:11:19 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,14 @@ int	set_flags(char *format, t_percent *conv, int i)
 {
 	if (format[i] == '%' || format[i] == '\0')
 		return (i);
-	if ((format[i] == '-' || format[i + 1] == '-') &&
-	!(ft_strchr("cspiduxX%", format[i])))
+	while (format[i] == '-' || format[i] == '0')
 	{
-		conv->left = 1;
+		if (format[i] == '-')
+			conv->left = 1;
+		if (format[i] == '0')
+			conv->zero = 1;
 		i++;
 	}
-	if ((format[i] == '0' || format[i + 1] == '0' || format[i - 1] == '0') &&
-	format[i] != '.' && (!(ft_isdigit(format[i])) || format[i] == '0'))
-	{
-		conv->zero = 1;
-		i++;
-	}
-	while (format[i] == '-')
-		i++;
 	return (i);
 }
 
