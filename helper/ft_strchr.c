@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_strchr.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/11/04 11:54:04 by tblanker       #+#    #+#                */
+/*   Updated: 2020/02/05 09:54:57 by tblanker      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../header.h"
+
+int	ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (s[0] == (char)c)
+			return (1);
+		s++;
+	}
+	if ((char)c == '\0')
+		return (0);
+	return (0);
+}

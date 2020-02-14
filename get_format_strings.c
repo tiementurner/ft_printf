@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 16:35:52 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/31 16:04:20 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/02/04 11:51:37 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ char	*get_p_string(va_list args, int precision, char type)
 	return (result);
 }
 
-char	*get_s_string(va_list args, int precision, int width)
+char	*get_s_string(va_list args, int precision)
 {
 	char	*temp;
 	int		i;
 	char	*result;
 
 	result = NULL;
-	if (precision == -1 && width == 0)
-		return (0);
+	if (precision == -1)
+		return (ft_strdup(""));
 	i = 0;
 	temp = va_arg(args, char *);
 	if (temp == NULL)

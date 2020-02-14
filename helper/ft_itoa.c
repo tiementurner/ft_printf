@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_unsigned_string.c                              :+:    :+:            */
+/*   ft_itoa.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/19 16:25:03 by tblanker       #+#    #+#                */
-/*   Updated: 2020/02/04 12:11:47 by tblanker      ########   odam.nl         */
+/*   Created: 2019/11/11 15:16:07 by tblanker       #+#    #+#                */
+/*   Updated: 2020/02/05 09:54:53 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-static int		ft_arraylength(unsigned int nbr)
+static int		ft_arraylength(int nbr)
 {
 	int arraylength;
 
 	arraylength = 1;
+	if (nbr < 0)
+	{
+		nbr = nbr * -1;
+		arraylength++;
+	}
 	while (nbr >= 10)
 	{
 		arraylength++;
@@ -25,7 +30,7 @@ static int		ft_arraylength(unsigned int nbr)
 	return (arraylength);
 }
 
-static char		*ft_makestring(int arraylength, unsigned int nbr, char *string)
+static char		*ft_makestring(int arraylength, int nbr, char *string)
 {
 	while (arraylength > -1)
 	{
@@ -36,55 +41,30 @@ static char		*ft_makestring(int arraylength, unsigned int nbr, char *string)
 	return (string);
 }
 
-static char		*ft_uitoa(unsigned int nbr)
+char			*ft_itoa(int nbr)
 {
 	char	*string;
+	int		i;
+	int		negative;
 	int		arraylength;
 
+	if (nbr == -2147483648)
+		return (ft_strdup("-2147483648"));
 	arraylength = ft_arraylength(nbr);
+	negative = 0;
+	i = 0;
+	if (nbr < 0)
+	{
+		negative = 1;
+		nbr = nbr * -1;
+	}
 	string = (char *)malloc(sizeof(char) * arraylength + 1);
 	if (!string)
 		return (NULL);
 	string[arraylength] = '\0';
 	arraylength--;
 	string = ft_makestring(arraylength, nbr, string);
+	if (negative == 1)
+		string[0] = '-';
 	return (string);
-}
-
-static char		*precision_u_string(int precision, char *number)
-{
-	char	*string;
-	int		i;
-	int		j;
-
-	j = 0;
-	string = (char *)malloc(sizeof(char) * precision + 1);
-	if (!string)
-		return (NULL);
-	string[precision] = '\0';
-	zerofill(string, precision);
-	i = precision - ft_strlen(number);
-	while (string[i])
-	{
-		string[i] = number[j];
-		i++;
-		j++;
-	}
-	free(number);
-	return (string);
-}
-
-char			*get_u_string(int precision, va_list args)
-{
-	char			*number;
-	unsigned int	nbr;
-
-	nbr = va_arg(args, int);
-	number = ft_uitoa(nbr);
-	if (nbr == 0 && (precision == 0 || precision == -1))
-		number = ft_strdup("");
-	if (precision > ft_strlen(number))
-		return (precision_u_string(precision, number));
-	else
-		return (number);
 }

@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 15:10:43 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/28 20:54:09 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/02/05 10:00:17 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void		print_out_struct(t_percent *conv, va_list args)
 	output = init_output(conv, format);
 	if (!output)
 		return ;
-	if (conv->zero && !(conv->left) && conv->precision < 0)
+	if (conv->zero && !(conv->left) && conv->precision < -1)
 	{
-		ft_bzero(output, ft_strlen(output));
+		zerofill(output, ft_strlen(output));
 		if (format[0] == '-' && (conv->type == 'i' || conv->type == 'd') &&
 		conv->width > ft_strlen(format))
 		{
@@ -70,7 +70,7 @@ char		*get_format_string(t_percent *conv, va_list args)
 	if (conv->type == 'p')
 		return (get_p_string(args, conv->precision, conv->type));
 	if (conv->type == 's')
-		return (get_s_string(args, conv->precision, conv->width));
+		return (get_s_string(args, conv->precision));
 	if (conv->type == 'u')
 		return (get_u_string(conv->precision, args));
 	if (conv->type == 'x' || conv->type == 'X')

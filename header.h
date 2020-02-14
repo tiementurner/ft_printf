@@ -6,7 +6,7 @@
 /*   By: tblanker <tblanker@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/27 15:45:47 by tblanker       #+#    #+#                */
-/*   Updated: 2020/01/31 16:04:17 by tblanker      ########   odam.nl         */
+/*   Updated: 2020/02/07 08:40:57 by tblanker      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef	struct	s_percent
 {
@@ -48,7 +47,7 @@ void			write_function(char c, t_percent *conv);
 int				is_negative(int n);
 void			ft_bspace(void *s, int n);
 char			*ft_strdup(const char *s1);
-void			ft_bzero(void *s, size_t n);
+void			zerofill(void *s, size_t n);
 int				ft_strlen(const char *s);
 int				ft_atoi(const char *str);
 int				ft_isdigit(int c);
@@ -65,7 +64,7 @@ char			*dec_to_hex_uppercase(unsigned long temp);
 char			*get_c_string(t_percent *conv, va_list args);
 char			*get_d_string(int precision, va_list args);
 char			*get_p_string(va_list args, int precision, char type);
-char			*get_s_string(va_list args, int precision, int width);
+char			*get_s_string(va_list args, int precision);
 char			*get_u_string(int precision, va_list args);
 char			*get_hex_string(va_list args, int precision, char type);
 char			*get_hex_string_fix(char *hex_num, int precision);
